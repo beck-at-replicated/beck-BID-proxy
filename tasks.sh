@@ -4,7 +4,7 @@ os=$(uname -s)
 arch=$(uname -m)
 preflight_current_version="v0.57.1"
 url="https://github.com/replicatedhq/troubleshoot/releases/download"
-preflight_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/preflightyaml"
+preflight_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/preflight.yaml"
 supportbundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle.yaml"
 
 cleanup(){
