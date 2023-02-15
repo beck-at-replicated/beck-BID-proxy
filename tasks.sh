@@ -146,4 +146,5 @@ then
 	supportbundle
 else
 	echo "Command not recognized."
+	echo "Supported options: preflight supportbundle"
 fi
