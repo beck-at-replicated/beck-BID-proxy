@@ -125,5 +125,6 @@ elif [ $task == "supportbundle" ]
 then
 	supportbundle
 else
+	echo "$task"
 	echo "Command not recognized."
 fi
