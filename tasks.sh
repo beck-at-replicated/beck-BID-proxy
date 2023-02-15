@@ -111,20 +111,13 @@ supportbundle(){
 	fi
 }
 
-while getopts s: flag
-do
-	case "${flag}" in
-		s) task=${OPTARG};;
-	esac
-done
-
-if [ $task == "preflight" ]
+if [ $1 == "preflight" ]
 then
 	preflight
-elif [ $task == "supportbundle" ]
+elif [ $1 == "supportbundle" ]
 then
 	supportbundle
 else
-	echo "$task"
+	echo $1
 	echo "Command not recognized."
 fi
