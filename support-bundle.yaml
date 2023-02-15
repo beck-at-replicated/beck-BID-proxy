@@ -1,0 +1,24 @@
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: host-collectors
+spec:
+  hostCollectors:
+	- cpu: {}
+	- memory: {}
+  hostAnalyzers:
+	- cpu:
+		checkName: "Number of CPUs"
+		outcomes:
+		  - fail:
+			  when: "count < 2"
+			  message: At least 2 CPU cores are required, and 4 CPU cores are recommended
+		  - pass:
+			  message: This server has at least 4 CPU cores
+	- memory:
+		checkName: "Amount of Memory"
+		outcomes:
+		  - fail:
+			  when: "< 4G"
+		  - pass:
+			  message: The system has at least 8G of memory
