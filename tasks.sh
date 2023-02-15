@@ -118,6 +118,5 @@ elif [ $1 == "supportbundle" ]
 then
 	supportbundle
 else
-	echo $1
 	echo "Command not recognized."
 fi
