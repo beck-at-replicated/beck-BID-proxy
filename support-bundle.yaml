@@ -4,16 +4,16 @@ metadata:
   name: cpu
 spec:
   hostCollectors:
-	- cpu: {}
+    - cpu: {}
   hostAnalyzers:
-	- cpu:
-		checkName: "Number of CPUs"
-		outcomes:
-		  - fail:
-			  when: "count < 2"
-			  message: At least 2 CPU cores are required, and 4 CPU cores are recommended
-		  - warn:
-			  when: "count < 4"
-			  message: At least 4 CPU cores are recommended
-		  - pass:
-			  message: This server has at least 4 CPU cores
+    - cpu:
+        checkName: "Number of CPUs"
+        outcomes:
+          - fail:
+              when: "count < 2"
+              message: At least 2 CPU cores are required, and 4 CPU cores are recommended
+          - warn:
+              when: "count < 4"
+              message: At least 4 CPU cores are recommended
+          - pass:
+              message: This server has at least 4 CPU cores
