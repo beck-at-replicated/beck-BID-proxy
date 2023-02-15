@@ -5,7 +5,7 @@ arch=$(uname -m)
 preflight_current_version="v0.57.1"
 url="https://github.com/replicatedhq/troubleshoot/releases/download"
 preflight_yaml="https://raw.githubusercontent.com/replicatedhq/troubleshoot/main/examples/preflight/sample-preflight.yaml"
-support-bundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle.yaml"
+supportbundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle.yaml"
 
 preflight_linux_os_x86_64(){
 	echo "Replicated Preflight loading for Linux x86_64..."
@@ -47,7 +47,7 @@ supportbundle_linux_os_x86_64(){
 	echo "Replicated Support Bundle loading for Linux x86_64..."
 	wget -q -P /tmp $url/$preflight_current_version/support-bundle_linux_amd64.tar.gz
 	tar zxf /tmp/support-bundle_linux_amd64.tar.gz -C /tmp
-	wget -q -P /tmp $support-bundle_yaml
+	wget -q -P /tmp $supportbundle_yaml
 	/tmp/support-bundle /tmp/support-bundle.yaml
 	rm /tmp/LICENSE /tmp/README.md /tmp/key.pub /tmp/troubleshoot-sbom.tgz* /tmp/support-bundle*
 }
@@ -55,8 +55,8 @@ supportbundle_linux_os_x86_64(){
 supportbundle_linux_os_arm64(){
 	echo "Replicated Support Bundle loading for Linux arm64..."
 	wget -q -P /tmp $url/$preflight_current_version/support-bundle_linux_arm64.tar.gz
-	tar zxf /tmp/preflight_linux_arm64.tar.gz -C /tmp
-	wget -q -P /tmp $support-bundle_yaml
+	tar zxf /tmp/support-bundle_linux_arm64.tar.gz -C /tmp
+	wget -q -P /tmp $supportbundle_yaml
 	/tmp/support-bundle /tmp/support-bundle.yaml
 	rm /tmp/LICENSE /tmp/README.md /tmp/key.pub /tmp/troubleshoot-sbom.tgz* /tmp/support-bundle*
 }
@@ -64,8 +64,8 @@ supportbundle_linux_os_arm64(){
 supportbundle_macos_arm64(){
 	echo "Replicated Support Bundle loading for macOS arm64..."
 	wget -q -P /tmp $url/$preflight_current_version/support-bundle_darwin_arm64.tar.gz
-	tar zxf /tmp/preflight_darwin_arm64.tar.gz -C /tmp
-	wget -q -P /tmp $support-bundle_yaml
+	tar zxf /tmp/support-bundle_darwin_arm64.tar.gz -C /tmp
+	wget -q -P /tmp $supportbundle_yaml
 	/tmp/support-bundle /tmp/support-bundle.yaml
 	rm /tmp/LICENSE /tmp/README.md /tmp/key.pub /tmp/troubleshoot-sbom.tgz* /tmp/support-bundle*
 }
@@ -73,8 +73,8 @@ supportbundle_macos_arm64(){
 supportbundle_macos_x86_64(){
 	echo "Replicated Support Bundle loading for macOS x86_64..."
 	wget -q -P /tmp $url/$preflight_current_version/support-bundle_darwin_amd64.tar.gz
-	tar zxf /tmp/preflight_darwin_amd64.tar.gz -C /tmp
-	wget -q -P /tmp $support-bundle_yaml
+	tar zxf /tmp/support-bundle_darwin_amd64.tar.gz -C /tmp
+	wget -q -P /tmp $supportbundle_yaml
 	/tmp/support-bundle /tmp/support-bundle.yaml
 	rm /tmp/LICENSE /tmp/README.md /tmp/key.pub /tmp/troubleshoot-sbom.tgz* /tmp/support-bundle*
 }
