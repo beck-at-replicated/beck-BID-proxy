@@ -5,7 +5,7 @@ arch=$(uname -m)
 preflight_current_version="v0.57.1"
 url="https://github.com/replicatedhq/troubleshoot/releases/download"
 preflight_yaml="https://raw.githubusercontent.com/replicatedhq/troubleshoot/main/examples/preflight/sample-preflight.yaml"
-support-bundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle.yml"
+support-bundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle.yaml"
 
 preflight_linux_os_x86_64(){
 	echo "Replicated Preflight loading for Linux x86_64..."
