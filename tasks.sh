@@ -65,7 +65,7 @@ supportbundle_macos_arm64(){
 	echo "Replicated Support Bundle loading for macOS arm64..."
 	wget -q -P /tmp $url/$preflight_current_version/support-bundle_darwin_arm64.tar.gz
 	tar zxf /tmp/support-bundle_darwin_arm64.tar.gz -C /tmp
-	#wget -q -P /tmp $supportbundle_yaml
+	wget -q -P /tmp $supportbundle_yaml
 	/tmp/support-bundle /tmp/support-bundle.yaml
 	rm /tmp/LICENSE /tmp/README.md /tmp/key.pub /tmp/troubleshoot-sbom.tgz* /tmp/support-bundle*
 }
