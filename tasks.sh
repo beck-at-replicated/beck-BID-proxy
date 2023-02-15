@@ -121,7 +121,7 @@ done
 if [ $task == "preflight" ]
 then
 	preflight
-elif [ $task == "supportbundle" ] || [ $task == "support-bundle" ]
+elif [ $task == "supportbundle" ]
 then
 	supportbundle
 else
