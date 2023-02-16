@@ -15,6 +15,9 @@ spec:
           url: https://replicated.app
     - systemPackages:
         collectorName: system-packages
+        ubuntu:
+          - vim
+        centos:
           - vim
   hostAnalyzers:
     - cpu:
