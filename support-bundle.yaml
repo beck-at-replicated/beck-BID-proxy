@@ -5,6 +5,7 @@ metadata:
 spec:
   hostCollectors:
     - cpu: {}
+    - memory: {}
     - hostOS: {}
     - diskUsage:
         collectorName: root-disk
@@ -31,6 +32,17 @@ spec:
               message: At least 4 CPU cores are recommended
           - pass:
               message: This server has at least 4 CPU cores
+    - memory:
+        checkName: "Amount of Memory"
+        outcomes:
+          - fail:
+              when: "< 4G"
+              message: At least 4G of memory is required, and 8G of memory is recommended
+          - warn:
+              when: "< 8G"
+              message: At least 8G of memory is recommended
+          - pass:
+              message: The system has at least 8G of memory
     - hostOS:
         outcomes:
           - pass:
