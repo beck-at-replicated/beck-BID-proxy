@@ -9,6 +9,13 @@ spec:
     - diskUsage:
         collectorName: root-disk
         path: /
+    - http:
+        collectorName: get-replicated-app
+        get:
+          url: https://replicated.app
+    - systemPackages:
+        collectorName: system-packages
+          - vim
   hostAnalyzers:
     - cpu:
         checkName: "Number of CPUs"
@@ -56,3 +63,23 @@ spec:
               message: The disk containing directory / has less than 10Gi of disk space available
           - pass:
               message: The disk containing directory / has at least 30Gi of total space, has at least 10Gi of disk space available, and is less than 60% full
+    - http:
+        checkName: Can Access Replicated API
+        collectorName: get-replicated-app
+        outcomes:
+          - warn:
+              when: "error"
+              message: Error connecting to https://replicated.app
+          - pass:
+              when: "statusCode == 200"
+              message: Connected to https://replicated.app
+          - warn:
+              message: "Unexpected response"
+    - systemPackages:
+        collectorName: system-packages
+        outcomes:
+        - fail:
+            when: '{{ not .IsInstalled }}'
+            message: Package {{ .Name }} is not installed
+        - pass:
+            message: Package {{ .Name }} is installed
