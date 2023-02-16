@@ -3,7 +3,7 @@ kind: HostPreflight
 metadata:
   name: example
 spec:
-  hostCollectors:
+  Collectors:
     - cpu: {}
     - memory: {}
     - hostOS: {}
@@ -20,7 +20,7 @@ spec:
           - vim
         centos:
           - vim
-  hostAnalyzers:
+  Analyzers:
     - cpu:
         checkName: "Number of CPUs"
         outcomes:
