@@ -36,10 +36,10 @@ cleanup(){
 
 preflight_linux_os_x86_64(){
 	echo "Replicated Preflight loading for Linux x86_64..."
-	wget -q -P /tmp $url/$preflight_current_version/collect_linux_amd64.tar.gz
-	tar zxf /tmp/collect_linux_amd64.tar.gz -C /tmp
+	wget -q -P /tmp $url/$preflight_current_version/preflight_linux_amd64.tar.gz
+	tar zxf /tmp/preflight_linux_amd64.tar.gz -C /tmp
 	wget -q -P /tmp $preflight_yaml
-	/tmp/collect /tmp/preflight.yaml
+	/tmp/preflight /tmp/preflight.yaml
 	cleanup
 }
 
