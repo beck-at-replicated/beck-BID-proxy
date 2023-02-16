@@ -3,122 +3,56 @@ kind: Preflight
 metadata:
   name: example
 spec:
-  analyzers:
-    - clusterVersion:
+  hostCollectors:
+    - cpu: {}
+    - hostOS: {}
+    - diskUsage:
+        collectorName: root-disk
+        path: /
+  hostAnalyzers:
+    - cpu:
+        checkName: "Number of CPUs"
         outcomes:
           - fail:
-              when: "< 1.20.0"
-              message: This application requires at least Kubernetes 1.20.0, and recommends 1.22.0.
-              uri: https://www.kubernetes.io
+              when: "count < 2"
+              message: At least 2 CPU cores are required, and 4 CPU cores are recommended
           - warn:
-              when: "< 1.22.0"
-              message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.22.0 or later.
-              uri: https://kubernetes.io
+              when: "count < 4"
+              message: At least 4 CPU cores are recommended
           - pass:
-              when: ">= 1.22.0"
-              message: Your cluster meets the recommended and required versions of Kubernetes.
-    - customResourceDefinition:
-        checkName: Ingress
-        customResourceDefinitionName: ingressroutes.contour.heptio.com
-        outcomes:
-          - fail:
-              message: Contour ingress not found!
-          - pass:
-              message: Contour ingress found!
-    - containerRuntime:
+              message: This server has at least 4 CPU cores
+    - hostOS:
         outcomes:
           - pass:
-              when: "== containerd"
-              message: containerd container runtime was found.
+              when: "centos = 7"
+              message: "CentOS 7 is supported"
+          - pass:
+              when: "centos = 8"
+              message: "CentOS 8 is supported"
           - fail:
-              message: Did not find containerd container runtime.
-    - storageClass:
-        checkName: Required storage classes
-        storageClassName: "default"
+              when: "ubuntu = 16.04"
+              message: "Ubuntu 16.04 is not supported"
+          - pass:
+              when: "ubuntu = 18.04"
+              message: "Ubuntu 18.04 is supported"
+          - pass:
+              when: "ubuntu = 20.04"
+              message: "Ubuntu 20.04 is supported"
+    - diskUsage:
+        checkName: "Root Disk at least 50Gi"
+        collectorName: root-disk
         outcomes:
           - fail:
-              message: Could not find a storage class called default.
-          - pass:
-              message: All good on storage classes
-    - distribution:
-        outcomes:
+              when: "total < 50Gi"
+              message: The disk containing directory / has less than 30Gi of total space
           - fail:
-              when: "== docker-desktop"
-              message: The application does not support Docker Desktop Clusters
-          - fail:
-              when: "== microk8s"
-              message: The application does not support Microk8s Clusters
-          - fail:
-              when: "== minikube"
-              message: The application does not support Minikube Clusters
-          - pass:
-              when: "== eks"
-              message: EKS is a supported distribution
-          - pass:
-              when: "== gke"
-              message: GKE is a supported distribution
-          - pass:
-              when: "== aks"
-              message: AKS is a supported distribution
-          - pass:
-              when: "== kurl"
-              message: KURL is a supported distribution
-          - pass:
-              when: "== digitalocean"
-              message: DigitalOcean is a supported distribution
-          - pass:
-              when: "== rke2"
-              message: RKE2 is a supported distribution
-          - pass:
-              when: "== k3s"
-              message: K3S is a supported distribution
+              when: "used/total > 80%"
+              message: The disk containing directory / is more than 80% full
           - warn:
-              message: Unable to determine the distribution of Kubernetes
-    - nodeResources:
-        checkName: Must have at least 3 nodes in the cluster, with 5 recommended
-        outcomes:
-        - fail:
-            when: "count() < 3"
-            message: This application requires at least 3 nodes.
-            uri: https://kurl.sh/docs/install-with-kurl/adding-nodes
-        - warn:
-            when: "count() < 5"
-            message: This application recommends at last 5 nodes.
-            uri: https://kurl.sh/docs/install-with-kurl/adding-nodes
-        - pass:
-            message: This cluster has enough nodes.
-    - nodeResources:
-        checkName: Every node in the cluster must have at least 8 GB of memory, with 32 GB recommended
-        outcomes:
-        - fail:
-            when: "min(memoryCapacity) < 8Gi"
-            message: All nodes must have at least 8 GB of memory.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - warn:
-            when: "min(memoryCapacity) < 32Gi"
-            message: All nodes are recommended to have at least 32 GB of memory.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - pass:
-            message: All nodes have at least 32 GB of memory.
-    - nodeResources:
-        checkName: Total CPU Cores in the cluster is 4 or greater
-        outcomes:
-          - fail:
-              when: "sum(cpuCapacity) < 4"
-              message: The cluster must contain at least 4 cores
-              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+              when: "used/total > 60%"
+              message: The disk containing directory / is more than 60% full
+          - warn:
+              when: "available < 10Gi"
+              message: The disk containing directory / has less than 10Gi of disk space available
           - pass:
-              message: There are at least 4 cores in the cluster
-    - nodeResources:
-        checkName: Every node in the cluster must have at least 40 GB of ephemeral storage, with 100 GB recommended
-        outcomes:
-        - fail:
-            when: "min(ephemeralStorageCapacity) < 40Gi"
-            message: All nodes must have at least 40 GB of ephemeral storage.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - warn:
-            when: "min(ephemeralStorageCapacity) < 100Gi"
-            message: All nodes are recommended to have at least 100 GB of ephemeral storage.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - pass:
-            message: All nodes have at least 100 GB of ephemeral storage.
+              message: The disk containing directory / has at least 30Gi of total space, has at least 10Gi of disk space available, and is less than 60% full
