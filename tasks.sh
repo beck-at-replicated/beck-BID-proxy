@@ -141,7 +141,7 @@ supportbundle(){
 if [ $1 == "preflight" ]
 then
 	preflight
-elif [ $1 == "supportbundle" ]
+elif [ $1 == "supportbundle" ] || [ $1 == "support-bundle" ]
 then
 	supportbundle
 else
