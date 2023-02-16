@@ -2,7 +2,7 @@
 
 os=$(uname -s)
 arch=$(uname -m)
-preflight_current_version="v0.57.1"
+current_version="v0.57.1"
 url="https://github.com/replicatedhq/troubleshoot/releases/download"
 preflight_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/preflight.yaml"
 supportbundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle.yaml"
@@ -36,7 +36,7 @@ cleanup(){
 
 preflight_linux_os_x86_64(){
 	echo "Replicated Preflight loading for Linux x86_64..."
-	wget -q -P /tmp $url/$preflight_current_version/preflight_linux_amd64.tar.gz
+	wget -q -P /tmp $url/$current_version/preflight_linux_amd64.tar.gz
 	tar zxf /tmp/preflight_linux_amd64.tar.gz -C /tmp
 	wget -q -P /tmp $preflight_yaml
 	/tmp/preflight /tmp/preflight.yaml
@@ -45,7 +45,7 @@ preflight_linux_os_x86_64(){
 
 preflight_linux_os_arm64(){
 	echo "Replicated Preflight loading for Linux arm64..."
-	wget -q -P /tmp $url/$preflight_current_version/preflight_linux_arm64.tar.gz
+	wget -q -P /tmp $url/$current_version/preflight_linux_arm64.tar.gz
 	tar zxf /tmp/preflight_linux_arm64.tar.gz -C /tmp
 	wget -q -P /tmp $preflight_yaml
 	/tmp/preflight /tmp/preflight.yaml
@@ -54,7 +54,7 @@ preflight_linux_os_arm64(){
 
 preflight_macos_arm64(){
 	echo "Replicated Preflight loading for macOS arm64..."
-	wget -q -P /tmp $url/$preflight_current_version/preflight_darwin_arm64.tar.gz
+	wget -q -P /tmp $url/$current_version/preflight_darwin_arm64.tar.gz
 	tar zxf /tmp/preflight_darwin_arm64.tar.gz -C /tmp
 	wget -q -P /tmp $preflight_yaml
 	/tmp/preflight /tmp/preflight.yaml
@@ -63,7 +63,7 @@ preflight_macos_arm64(){
 
 preflight_macos_x86_64(){
 	echo "Replicated Preflight loading for macOS x86_64..."
-	wget -q -P /tmp $url/$preflight_current_version/preflight_darwin_amd64.tar.gz
+	wget -q -P /tmp $url/$current_version/preflight_darwin_amd64.tar.gz
 	tar zxf /tmp/preflight_darwin_amd64.tar.gz -C /tmp
 	wget -q -P /tmp $preflight_yaml
 	/tmp/preflight /tmp/preflight.yaml
@@ -72,7 +72,7 @@ preflight_macos_x86_64(){
 
 supportbundle_linux_os_x86_64(){
 	echo "Replicated Support Bundle loading for Linux x86_64..."
-	wget -q -P /tmp $url/$preflight_current_version/support-bundle_linux_amd64.tar.gz
+	wget -q -P /tmp $url/$current_version/support-bundle_linux_amd64.tar.gz
 	tar zxf /tmp/support-bundle_linux_amd64.tar.gz -C /tmp
 	wget -q -P /tmp $supportbundle_yaml
 	/tmp/support-bundle /tmp/support-bundle.yaml
@@ -81,7 +81,7 @@ supportbundle_linux_os_x86_64(){
 
 supportbundle_linux_os_arm64(){
 	echo "Replicated Support Bundle loading for Linux arm64..."
-	wget -q -P /tmp $url/$preflight_current_version/support-bundle_linux_arm64.tar.gz
+	wget -q -P /tmp $url/$current_version/support-bundle_linux_arm64.tar.gz
 	tar zxf /tmp/support-bundle_linux_arm64.tar.gz -C /tmp
 	wget -q -P /tmp $supportbundle_yaml
 	/tmp/support-bundle /tmp/support-bundle.yaml
@@ -90,7 +90,7 @@ supportbundle_linux_os_arm64(){
 
 supportbundle_macos_arm64(){
 	echo "Replicated Support Bundle loading for macOS arm64..."
-	wget -q -P /tmp $url/$preflight_current_version/support-bundle_darwin_arm64.tar.gz
+	wget -q -P /tmp $url/$current_version/support-bundle_darwin_arm64.tar.gz
 	tar zxf /tmp/support-bundle_darwin_arm64.tar.gz -C /tmp
 	wget -q -P /tmp $supportbundle_yaml
 	/tmp/support-bundle /tmp/support-bundle.yaml
@@ -99,7 +99,7 @@ supportbundle_macos_arm64(){
 
 supportbundle_macos_x86_64(){
 	echo "Replicated Support Bundle loading for macOS x86_64..."
-	wget -q -P /tmp $url/$preflight_current_version/support-bundle_darwin_amd64.tar.gz
+	wget -q -P /tmp $url/$current_version/support-bundle_darwin_amd64.tar.gz
 	tar zxf /tmp/support-bundle_darwin_amd64.tar.gz -C /tmp
 	wget -q -P /tmp $supportbundle_yaml
 	/tmp/support-bundle /tmp/support-bundle.yaml
