@@ -2,7 +2,7 @@
 
 os=$(uname -s)
 arch=$(uname -m)
-current_version="v0.57.1"
+current_version="v0.59.0"
 url="https://github.com/replicatedhq/troubleshoot/releases/download"
 preflight_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/preflight.yaml"
 supportbundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle.yaml"
