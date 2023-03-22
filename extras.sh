@@ -6,6 +6,7 @@ current_version="v0.59.0"
 url="https://github.com/replicatedhq/troubleshoot/releases/download"
 preflight_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/preflight.yaml"
 supportbundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle.yaml"
+supportbundle_yaml_v2="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle-v2.yaml"
 
 cleanup(){
 	if [ -f /tmp/LICENSE ]
@@ -143,6 +144,12 @@ then
 	preflight
 elif [ $1 == "supportbundle" ] || [ $1 == "support-bundle" ]
 then
+	if [ $2 == "v2" ]
+	then
+		supportbundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle-v2.yaml"
+	else
+		supportbundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle.yaml"
+	fi
 	supportbundle
 else
 	echo "Command not recognized."
