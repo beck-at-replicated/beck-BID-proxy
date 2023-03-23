@@ -5,7 +5,7 @@ arch=$(uname -m)
 current_version="v0.59.0"
 url="https://github.com/replicatedhq/troubleshoot/releases/download"
 preflight_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/preflight.yaml"
-if [ $2 == "v2" ]
+if [ "$2" == "v2" ]
 then
 	supportbundle_yaml="https://raw.githubusercontent.com/chasehainey/sandbox/main/support-bundle-v2.yaml"
 else
@@ -112,41 +112,41 @@ supportbundle_macos_x86_64(){
 }
 
 preflight(){
-	if [ $os == "Linux" ] && [ $arch == "x86_64" ]
+	if [ "$os" == "Linux" ] && [ "$arch" == "x86_64" ]
 	then
 		preflight_linux_os_x86_64
-	elif [ $os == "Linux" ] && ([ $arch == "arm64"] || [ $arch == "aarch64" ])
+	elif [ "$os" == "Linux" ] && ([ "$arch" == "arm64"] || [ "$arch" == "aarch64" ])
 	then
 		preflight_linux_os_arm64
-	elif [ $os == "Darwin" ] && ([ $arch == "arm64" ] || [ $arch == "aarch64" ])
+	elif [ "$os" == "Darwin" ] && ([ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ])
 	then
 		preflight_macos_arm64
-	elif [ $os == "Darwin" ] && [ $arch == "x86_64" ]
+	elif [ "$os" == "Darwin" ] && [ "$arch" == "x86_64" ]
 	then
 		preflight_macos_x86_64
 	fi
 }
 
 supportbundle(){
-	if [ $os == "Linux" ] && [ $arch == "x86_64" ]
+	if [ "$os" == "Linux" ] && [ "$arch" == "x86_64" ]
 	then
 		supportbundle_linux_os_x86_64
-	elif [ $os == "Linux" ] && ([ $arch == "arm64"] || [ $arch == "aarch64" ])
+	elif [ "$os" == "Linux" ] && ([ "$arch" == "arm64"] || [ "$arch" == "aarch64" ])
 	then
 		supportbundle_linux_os_arm64
-	elif [ $os == "Darwin" ] && ([ $arch == "arm64" ] || [ $arch == "aarch64" ])
+	elif [ "$os" == "Darwin" ] && ([ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ])
 	then
 		supportbundle_macos_arm64
-	elif [ $os == "Darwin" ] && [ $arch == "x86_64" ]
+	elif [ "$os" == "Darwin" ] && [ "$arch" == "x86_64" ]
 	then
 		supportbundle_macos_x86_64
 	fi
 }
 
-if [ $1 == "preflight" ]
+if [ "$1" == "preflight" ]
 then
 	preflight
-elif [ $1 == "supportbundle" ] || [ $1 == "support-bundle" ]
+elif [ "$1" == "supportbundle" ] || [ "$1" == "support-bundle" ]
 then
 	supportbundle
 else
