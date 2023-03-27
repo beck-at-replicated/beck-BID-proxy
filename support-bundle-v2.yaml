@@ -105,7 +105,7 @@ spec:
               when: "ubuntu = 20.04"
               message: "Ubuntu 20.04 is supported"
     - diskUsage:
-        checkName: "Root Disk at least 50Gi"
+        checkName: "Root Disk at least 200Gi"
         collectorName: root-disk
         outcomes:
           - fail:
@@ -134,10 +134,10 @@ spec:
     - systemPackages:
         collectorName: system-packages
         outcomes:
-        - warn:
+        - pass:
             when: '{{ not .IsInstalled }}'
             message: Package {{ .Name }} is not installed
-        - pass:
+        - fail:
             message: Package {{ .Name }} is installed
     - tcpPortStatus:
         checkName: "Host HTTPS TCP Port Status"
