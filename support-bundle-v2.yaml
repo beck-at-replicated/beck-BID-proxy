@@ -16,13 +16,22 @@ spec:
           url: https://replicated.app
     - systemPackages:
         collectorName: system-packages-mysql
-          mysql-server
+        rhel:
+          - mysql-server
+        ubuntu:
+          - mysql-server
     - systemPackages:
         collectorName: system-packages-mssql
-          mssql-server
+        ubuntu:
+          - mssql-server
+        rhel:
+          - mssql-server
     - systemPackages:
         collectorName: system-packages-docker
-          docker
+        ubuntu:
+          - docker
+        rhel:
+          - docker
     - systemPackages:
         collectorName: system-packages-rhel
         rhel:
