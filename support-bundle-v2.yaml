@@ -143,10 +143,10 @@ spec:
         checkName: "Checking for  MySQL"
         outcomes:
         - pass:
-            when: '{{ .Version }} > 9.x'
+            when: '{{ .Version }} > 9.0.x-1ubuntu18.04'
             message: Package {{ .Name }} is installed and up to date.
         - warn:
-            when: '{{ .Version }} > 8.x'
+            when: '{{ .Version }} > 8.0.x-1ubuntu18.04'
             message: Package {{ .Name }} is installed, but not on version 9.x
         - fail:
             when: '{{ not .IsInstalled }}'
