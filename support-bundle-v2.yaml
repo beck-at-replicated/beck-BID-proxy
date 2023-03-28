@@ -134,14 +134,14 @@ spec:
         checkName: "Checking for  MySQL"
         outcomes:
         - pass:
-            when: '{{ .IsInstalled }} && {{ .Version }} > 9.x'
+            when: '{{ .Version }} > 9.x'
             message: Package {{ .Name }} is installed and up to date.
         - warn:
-            when: '{{ .IsInstalled }} && {{ .Version }} > 8.x'
+            when: '{{ .Version }} > 8.x'
             message: Package {{ .Name }} is installed, but not on version 9.x
         - fail:
             when: '{{ not .IsInstalled }}'
-            message: Package {{ .Name }} is no installed
+            message: Package {{ .Name }} is not installed
     - tcpPortStatus:
         checkName: "Host HTTPS TCP Port Status"
         collectorName: host-https-port
