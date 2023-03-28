@@ -15,19 +15,17 @@ spec:
         get:
           url: https://replicated.app
     - systemPackages:
-        collectorName: system-packages
-        ubuntu:
-          - mysql-server-8.0
-          - mariadb-server
+        collectorName: system-packages-mysql
+          - mysql-server
+    - systemPackages:
+        collectorName: system-packages-mssql
+          - mssql-server
+    - systemPackages:
+        collectorName: system-packages-docker
           - docker
-        centos:
-          - mysql-server-8.0
-          - mariadb-server
-          - docker
+    - systemPackages:
+        collectorName: system-packages-rhel
         rhel:
-          - mysql-server-8.0
-          - mariadb-server
-          - docker
           - container-tools
     - tcpPortStatus:
         collectorName: host-https-port
@@ -132,13 +130,18 @@ spec:
           - warn:
               message: "Unexpected response"
     - systemPackages:
-        collectorName: system-packages
+        collectorName: system-packages-mysql
+        checkName: "Checking for  MySQL"
         outcomes:
         - pass:
-            when: '{{ not .IsInstalled }}'
-            message: Package {{ .Name }} is not installed
+            when: '{{ .IsInstalled }} && {{ .Version }} > 9.x'
+            message: Package {{ .Name }} is installed and up to date.
+        - warn:
+            when: '{{ .IsInstalled }} && {{ .Version }} > 8.x'
+            message: Package {{ .Name }} is installed, but not on version 9.x
         - fail:
-            message: Package {{ .Name }} is installed
+            when: '{{ not .IsInstalled }}'
+            message: Package {{ .Name }} is no installed
     - tcpPortStatus:
         checkName: "Host HTTPS TCP Port Status"
         collectorName: host-https-port
